@@ -1,0 +1,47 @@
+name: Deploy to Hostinger
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Upload website
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v6
+
+      - name: Install FTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
+
+      - name: Upload to Hostinger
+        env:
+          FTP_HOST: ${{ secrets.HOSTINGER_FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ secrets.HOSTINGER_FTP_PATH }}
+        run: |
+          test -n "$FTP_HOST"
+          test -n "$FTP_USERNAME"
+          test -n "$FTP_PASSWORD"
+          test -n "$FTP_REMOTE_PATH"
+
+          lftp -c "
+            set cmd:fail-exit yes;
+            set net:max-retries 2;
+            set net:timeout 20;
+            set ftp:ssl-allow no;
+            open -p 21 -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_HOST\";
+            mirror --reverse --verbose --only-newer --parallel=4               --exclude-glob .git/**               --exclude-glob .github/**               --exclude README.md               --exclude CNAME               ./ \"$FTP_REMOTE_PATH\";
+            bye;
+          "
