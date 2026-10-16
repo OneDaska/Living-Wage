@@ -93,3 +93,79 @@ nav.querySelectorAll("a").forEach((link) => {
     menuToggle.setAttribute("aria-label", "Open menu");
   });
 });
+
+
+const gatedDownloadLinks = document.querySelectorAll("[data-download-gate]");
+const downloadModal = document.querySelector("#download-modal");
+const downloadForm = document.querySelector("#download-form");
+const downloadName = document.querySelector("#download-name");
+const downloadEmail = document.querySelector("#download-email");
+const downloadError = document.querySelector("#download-form-error");
+const closeDownloadButtons = document.querySelectorAll("[data-close-download]");
+let activeDownloadUrl = "./assets/ghana-living-wage-report-2025.pdf";
+let downloadTrigger = null;
+
+const openDownloadModal = (trigger) => {
+  downloadTrigger = trigger;
+  activeDownloadUrl = trigger.href;
+  downloadError.textContent = "";
+  downloadModal.hidden = false;
+  document.body.classList.add("modal-open");
+  window.setTimeout(() => downloadName.focus(), 50);
+};
+
+const closeDownloadModal = () => {
+  downloadModal.hidden = true;
+  document.body.classList.remove("modal-open");
+  downloadForm.reset();
+  downloadError.textContent = "";
+  downloadTrigger?.focus();
+};
+
+gatedDownloadLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    nav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    openDownloadModal(link);
+  });
+});
+
+closeDownloadButtons.forEach((button) => {
+  button.addEventListener("click", closeDownloadModal);
+});
+
+downloadForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const nameIsValid = downloadName.value.trim().length >= 2;
+  const emailIsValid =
+    downloadEmail.validity.valid &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(downloadEmail.value.trim());
+
+  if (!nameIsValid) {
+    downloadError.textContent = "Please enter your full name.";
+    downloadName.focus();
+    return;
+  }
+
+  if (!emailIsValid) {
+    downloadError.textContent = "Please enter a valid email address.";
+    downloadEmail.focus();
+    return;
+  }
+
+  const temporaryLink = document.createElement("a");
+  temporaryLink.href = activeDownloadUrl;
+  temporaryLink.download = "ghana-living-wage-report-2025.pdf";
+  document.body.appendChild(temporaryLink);
+  temporaryLink.click();
+  temporaryLink.remove();
+  closeDownloadModal();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !downloadModal.hidden) {
+    closeDownloadModal();
+  }
+});
