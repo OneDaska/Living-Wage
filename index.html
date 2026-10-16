@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#073b8c" />
+    <meta
+      name="description"
+      content="The 2025 Ghana Living Wage Report compares the cost of a basic but decent independent life with entry-level salaries across Accra/Tema, Takoradi, Kumasi and Cape Coast."
+    />
+    <title>Ghana Living Wage Report 2025 | L’AINE HR</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="report-label" href="#top" aria-label="Ghana Living Wage Report home">
+          <span>Ghana Living Wage</span>
+          <strong>2025</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#findings">Findings</a>
+          <a href="#cities">Cities</a>
+          <a href="#method">Method</a>
+          <a href="#actions">Actions</a>
+          <a class="nav-cta" href="./assets/ghana-living-wage-report-2025.docx" download>Download report</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> Second edition · 2025</p>
+            <h1>What does it take to live—not merely survive?</h1>
+            <p class="hero-lead">
+              A city-by-city benchmark for the monthly income an entry-level graduate needs to
+              maintain a basic but decent independent life in Ghana.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-gold" href="#cities">Explore the findings</a>
+              <a class="text-link" href="./assets/ghana-living-wage-report-2025.docx" download>
+                Download full report <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <div class="hero-meta" aria-label="Report scope">
+              <div><strong>3,257</strong><span>salary observations</span></div>
+              <div><strong>4</strong><span>urban labour markets</span></div>
+              <div><strong>1</strong><span>independent worker</span></div>
+            </div>
+          </div>
+
+          <div class="benchmark-card" aria-label="2025 net living wage by city">
+            <div class="card-kicker">2025 net living wage</div>
+            <div class="benchmark-list">
+              <div class="benchmark-row">
+                <div class="benchmark-label"><span>Accra / Tema</span><strong>GHS 3,840</strong></div>
+                <div class="track"><span style="--value: 100%"></span></div>
+              </div>
+              <div class="benchmark-row">
+                <div class="benchmark-label"><span>Takoradi</span><strong>GHS 2,683</strong></div>
+                <div class="track"><span style="--value: 70%"></span></div>
+              </div>
+              <div class="benchmark-row">
+                <div class="benchmark-label"><span>Kumasi</span><strong>GHS 2,597</strong></div>
+                <div class="track"><span style="--value: 68%"></span></div>
+              </div>
+              <div class="benchmark-row">
+                <div class="benchmark-label"><span>Cape Coast</span><strong>GHS 2,210</strong></div>
+                <div class="track"><span style="--value: 58%"></span></div>
+              </div>
+            </div>
+            <p class="card-note">Monthly net income, including a 5% sustainability margin.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="signal" id="findings">
+        <div class="shell signal-grid">
+          <p class="section-number">01 / The central finding</p>
+          <div>
+            <h2>Actual salaries fall short in every city.</h2>
+            <p>
+              Median take-home pay covers only <strong>74.6% to 86.9%</strong> of the amount needed
+              for essential urban living. A salary can be common in the market and still be inadequate.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="city-section" id="cities">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-number">02 / City comparison</p>
+              <h2>One country. Four different realities.</h2>
+            </div>
+            <p>Select a city to compare expectations, living costs and actual pay.</p>
+          </div>
+
+          <div class="city-tabs" role="tablist" aria-label="Select a city">
+            <button class="city-tab active" role="tab" aria-selected="true" data-city="accra">Accra / Tema</button>
+            <button class="city-tab" role="tab" aria-selected="false" data-city="takoradi">Takoradi</button>
+            <button class="city-tab" role="tab" aria-selected="false" data-city="kumasi">Kumasi</button>
+            <button class="city-tab" role="tab" aria-selected="false" data-city="cape">Cape Coast</button>
+          </div>
+
+          <div class="city-panel" aria-live="polite">
+            <div class="city-intro">
+              <p class="city-label" id="city-label">Accra / Tema</p>
+              <p class="city-statement" id="city-statement">
+                Actual salary leaves the largest monthly shortfall among the four markets.
+              </p>
+              <div class="coverage-ring" id="coverage-ring" style="--coverage: 74.6">
+                <div><strong id="coverage-value">74.6%</strong><span>wage coverage</span></div>
+              </div>
+            </div>
+            <div class="metric-stack">
+              <div class="metric-row">
+                <div><span>Expected salary</span><strong id="expected-value">GHS 3,600</strong></div>
+                <div class="metric-track"><span id="expected-bar" class="bar expected" style="width: 93.7%"></span></div>
+              </div>
+              <div class="metric-row">
+                <div><span>Net living wage</span><strong id="living-value">GHS 3,840</strong></div>
+                <div class="metric-track"><span id="living-bar" class="bar living" style="width: 100%"></span></div>
+              </div>
+              <div class="metric-row">
+                <div><span>Actual salary</span><strong id="actual-value">GHS 2,866</strong></div>
+                <div class="metric-track"><span id="actual-bar" class="bar actual" style="width: 74.6%"></span></div>
+              </div>
+              <div class="gap-line">
+                <span>Monthly shortfall</span>
+                <strong id="gap-value">GHS 974</strong>
+              </div>
+            </div>
+          </div>
+          <p class="data-note">Values shown are monthly medians or estimated monthly net benchmarks. Figures are rounded for display.</p>
+        </div>
+      </section>
+
+      <section class="why-section">
+        <div class="shell why-grid">
+          <div class="why-quote">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote>
+              Market acceptance and wage adequacy are different.
+            </blockquote>
+          </div>
+          <div class="why-copy">
+            <p class="section-number">03 / Why this matters</p>
+            <h2>The gap is paid for somewhere.</h2>
+            <p>
+              When wages do not cover essential costs, workers bridge the difference through family
+              support, borrowing, delayed healthcare, reduced food quality or additional work.
+              Employers may feel the same pressure through disengagement, early-career attrition and
+              difficulty retaining trained talent.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-section" id="method">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-number">04 / Research approach</p>
+              <h2>A practical benchmark, grounded in local costs.</h2>
+            </div>
+            <p>
+              The study updates the 2024 city baskets with 2025 official price, fare and tariff evidence.
+            </p>
+          </div>
+          <ol class="method-list">
+            <li>
+              <span>01</span>
+              <h3>Define the worker</h3>
+              <p>One graduate entry-level worker, living independently and without dependants.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <h3>Update essential costs</h3>
+              <p>Food, rent, transport, utilities, health, connectivity and other basic needs.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <h3>Compare three measures</h3>
+              <p>Jobseeker expectations, the net living-wage benchmark and verified actual salary.</p>
+            </li>
+            <li>
+              <span>04</span>
+              <h3>Test adequacy</h3>
+              <p>Measure how much of the city benchmark actual take-home pay can cover.</p>
+            </li>
+          </ol>
+          <div class="sample-note">
+            <strong>Evidence base</strong>
+            <p>987 jobseeker expectations + 2,270 verified payroll or worker-earnings records.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="action-section" id="actions">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-number">05 / From evidence to action</p>
+              <h2>What employers can do now.</h2>
+            </div>
+          </div>
+          <div class="action-grid">
+            <article>
+              <span class="action-index">01</span>
+              <h3>Use adequacy as a reference</h3>
+              <p>Compare entry-level take-home pay with the relevant city benchmark—not only the legal minimum or competitor bands.</p>
+            </article>
+            <article>
+              <span class="action-index">02</span>
+              <h3>Close gaps in phases</h3>
+              <p>Quantify the shortfall, prioritise the lowest coverage and adopt a clear, time-bound adjustment plan.</p>
+            </article>
+            <article>
+              <span class="action-index">03</span>
+              <h3>Design benefits that count</h3>
+              <p>Target transport, meals, healthcare, data and housing costs—and measure the expense genuinely replaced.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="download-section">
+        <div class="shell download-grid">
+          <div>
+            <p class="eyebrow light"><span></span> Ghana Living Wage Report 2025</p>
+            <h2>See the evidence behind the numbers.</h2>
+            <p>Read the full methodology, city analysis, year-on-year comparisons and implementation framework.</p>
+          </div>
+          <a class="button button-light" href="./assets/ghana-living-wage-report-2025.docx" download>
+            Download full report <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer-grid">
+        <p class="footer-name">Ghana Living Wage 2025</p>
+        <p>Ghana Living Wage Research Programme · Second Edition</p>
+        <p>Accra, Ghana · 2025</p>
+      </div>
+    </footer>
+  </body>
+</html>
