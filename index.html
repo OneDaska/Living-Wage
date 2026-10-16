@@ -28,7 +28,7 @@
           <a href="#cities">Cities</a>
           <a href="#method">Method</a>
           <a href="#actions">Actions</a>
-          <a class="nav-cta" href="./assets/ghana-living-wage-report-2025.pdf" download>Download report</a>
+          <a class="nav-cta" href="./assets/ghana-living-wage-report-2025.pdf" download data-download-gate>Download report</a>
         </nav>
       </div>
     </header>
@@ -45,7 +45,7 @@
             </p>
             <div class="hero-actions">
               <a class="button button-gold" href="#cities">Explore the findings</a>
-              <a class="text-link" href="./assets/ghana-living-wage-report-2025.pdf" download>
+              <a class="text-link" href="./assets/ghana-living-wage-report-2025.pdf" download data-download-gate>
                 Download full report <span aria-hidden="true">↓</span>
               </a>
             </div>
@@ -240,7 +240,7 @@
             <h2>See the evidence behind the numbers.</h2>
             <p>Read the full methodology, city analysis, year-on-year comparisons and implementation framework.</p>
           </div>
-          <a class="button button-light" href="./assets/ghana-living-wage-report-2025.pdf" download>
+          <a class="button button-light" href="./assets/ghana-living-wage-report-2025.pdf" download data-download-gate>
             Download full report <span aria-hidden="true">↓</span>
           </a>
         </div>
@@ -254,5 +254,38 @@
         <p>Accra, Ghana · 2025</p>
       </div>
     </footer>
+    <div class="download-modal" id="download-modal" hidden>
+      <div class="download-modal-backdrop" data-close-download></div>
+      <section
+        class="download-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="download-dialog-title"
+        aria-describedby="download-dialog-copy"
+      >
+        <button class="download-modal-close" type="button" aria-label="Close download form" data-close-download>×</button>
+        <p class="eyebrow"><span></span> Free report access</p>
+        <h2 id="download-dialog-title">Get the full report</h2>
+        <p id="download-dialog-copy">
+          Enter your name and email address to download the 2025 Ghana Living Wage Report.
+        </p>
+        <form class="download-form" id="download-form" novalidate>
+          <label>
+            <span>Full name</span>
+            <input id="download-name" name="name" type="text" autocomplete="name" minlength="2" required />
+          </label>
+          <label>
+            <span>Email address</span>
+            <input id="download-email" name="email" type="email" autocomplete="email" required />
+          </label>
+          <p class="download-form-error" id="download-form-error" role="alert" aria-live="polite"></p>
+          <button class="button button-gold download-submit" type="submit">
+            Continue to download <span aria-hidden="true">↓</span>
+          </button>
+        </form>
+        <p class="download-privacy">Your details stay in this browser and are not stored by this website.</p>
+      </section>
+    </div>
+
   </body>
 </html>
