@@ -27,6 +27,12 @@ body {
 
 a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
+.download-trigger {
+  appearance: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
 .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 .skip-link {
   position: fixed; left: 16px; top: -80px; z-index: 1000; padding: 12px 18px;
@@ -254,7 +260,6 @@ blockquote { margin: 0; font-size: clamp(36px, 4.4vw, 61px); font-weight: 630; l
   *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
 }
 
-
 body.modal-open { overflow: hidden; }
 
 .download-modal {
@@ -266,17 +271,20 @@ body.modal-open { overflow: hidden; }
   padding: 24px;
 }
 
-.download-modal[hidden] { display: none; }
-
 .download-modal-backdrop {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
   background: rgba(3, 27, 61, .72);
   backdrop-filter: blur(10px);
+  cursor: default;
 }
 
 .download-dialog {
   position: relative;
+  z-index: 1;
   width: min(100%, 520px);
   max-height: calc(100vh - 48px);
   overflow-y: auto;
@@ -304,7 +312,7 @@ body.modal-open { overflow: hidden; }
   cursor: pointer;
 }
 
-.download-dialog .eyebrow { margin-bottom: 18px; color: var(--blue-700); }
+.download-dialog .eyebrow { margin-bottom: 18px; color: var(--navy-700); }
 .download-dialog h2 { margin: 0 40px 12px 0; font-size: 40px; line-height: 1.08; letter-spacing: -.04em; }
 .download-dialog > p:not(.eyebrow):not(.download-privacy) { margin: 0; color: var(--muted); line-height: 1.65; }
 
@@ -325,18 +333,23 @@ body.modal-open { overflow: hidden; }
 }
 
 .download-form input:focus {
-  border-color: var(--blue-500);
+  border-color: var(--navy-700);
   background: var(--white);
   box-shadow: 0 0 0 4px rgba(11, 99, 246, .12);
 }
 
-.download-form-error {
-  min-height: 20px;
-  margin: -4px 0 0;
-  color: #b42318;
+.download-form-error,
+.download-form-success {
+  min-height: 18px;
+  margin: -6px 0;
   font-size: 12px;
   font-weight: 700;
 }
+
+.download-form-error { color: #b42318; }
+.download-form-success { color: #08783f; }
+.download-form-error:empty,
+.download-form-success:empty { display: none; }
 
 .download-submit {
   width: 100%;
@@ -345,12 +358,28 @@ body.modal-open { overflow: hidden; }
   cursor: pointer;
 }
 
+.download-submit:disabled,
+.download-modal-close:disabled {
+  opacity: .62;
+  cursor: wait;
+}
+
 .download-privacy {
   margin: 18px 0 0;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.5;
   text-align: center;
+}
+
+.honeypot {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 @media (max-width: 620px) {

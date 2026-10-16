@@ -1,20 +1,39 @@
 # Ghana Living Wage Report 2025
 
-Static landing page for the Ghana Living Wage Report 2025.
+Dynamic Next.js edition of the Ghana Living Wage landing page.
 
-Custom domain: https://ghanalivingwage.com
+## What changed
 
-## Deploy to Hostinger
+- The existing blue visual design is preserved in React.
+- Report requests are validated by a server route and saved to Supabase.
+- The PDF is stored as an encrypted deployment asset rather than a public file.
+- A five-minute signed URL is issued only after the lead record is accepted.
 
-The repository includes a manual GitHub Actions workflow at
-`.github/workflows/deploy-hostinger.yml`.
+## Environment variables
 
-Create these repository secrets under **Settings → Secrets and variables → Actions**:
+Copy `.env.example` to `.env.local` and configure:
 
-- `HOSTINGER_FTP_HOST`: the FTP IP shown in Hostinger
-- `HOSTINGER_FTP_USERNAME`: the Hostinger FTP username
-- `HOSTINGER_FTP_PASSWORD`: the Hostinger FTP password
-- `HOSTINGER_FTP_PATH`: the domain's destination directory, commonly `public_html` or `/`
+- `SUPABASE_URL`
+- `SUPABASE_PUBLISHABLE_KEY`
+- `DOWNLOAD_TOKEN_SECRET` (at least 32 characters)
+- `REPORT_ENCRYPTION_KEY` (base64-encoded 32-byte key)
 
-Then open **Actions → Deploy to Hostinger → Run workflow**. The workflow uploads
-the website from `main` without deleting unrelated remote files.
+Never commit `.env.local` or disclose these values.
+
+## Database
+
+Apply `supabase/migrations/20261016010000_create_report_downloads.sql`. The table
+allows anonymous inserts through RLS but grants no anonymous read, update, or
+delete access.
+
+## Report encryption
+
+Run the encryption script with the same `REPORT_ENCRYPTION_KEY` configured in
+the deployment:
+
+```bash
+npm run encrypt-report -- source.pdf private/ghana-living-wage-report-2025.pdf.enc
+```
+
+Commit only the encrypted `.enc` asset. Do not add the plain PDF to the public
+repository.
